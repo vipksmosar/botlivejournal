@@ -17,7 +17,7 @@ class lj_news:
         req = session.get('https://'+self.login+'.livejournal.com/data/rss', headers={'Cache-Control': 'no-cache'})
         result = json.loads(json.dumps(xmltodict.parse(req.content)))
         result = result['rss']['channel']['item'][0]
-        text_to_out = str(result['title']+'\n'+result['description']+'\n'+result['guid']['#text'])
+        text_to_out = str(result['title']+'\n'+result['description'][:800]+'\n'+result['guid']['#text'])
         return text_to_out
     def parse_title(self):
         session = requests.Session()
@@ -91,7 +91,7 @@ class dialog_bot:
     def habrMessage(self, bot, update):
         print('i get:' +update.message.text)
         umt = update.message.text
-        find = re.findall('[^/habradd ]\S+', str(umt))
+        find = re.findall('[^ ]\S+', str(umt))
         if len(find)>1:
             habr = habr_news(find[0], bool(find[1]))
             print(find[0], bool(find[1]))
@@ -103,7 +103,7 @@ class dialog_bot:
     def ljMessage (self, bot, update):
         print('i get:' +update.message.text)
         umt = update.message.text
-        loginlj = re.findall('[^/ljadd ]\S+', str(umt))
+        loginlj = re.findall('[^ ]\S+', str(umt))
         lj = lj_news(str(loginlj[0]))
         text_to_bot = lj.parse()
         print(text_to_bot)
