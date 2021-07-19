@@ -1,0 +1,103 @@
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   background: url(https://html5book.ru/wp-content/uploads/2021/04/background_54.png)
+}
+
+ul {
+   list-style: none;
+}
+
+.topmenu {
+   background: white;
+}
+
+.topmenu a {
+   text-decoration: none;
+   display: block;
+   transition: .4s ease-in-out;
+}
+
+.topmenu>li>a {
+   padding: 20px;
+   color: #767676;
+   text-transform: uppercase;
+   font-weight: bold;
+   letter-spacing: 1px;
+   font-family: 'Exo 2', sans-serif;
+}
+
+.topmenu li a:hover {
+   color: #c0a97a;
+}
+
+.submenu li a {
+   border-bottom: 1px solid #efefef;
+   font-size: 12px;
+   color: #484848;
+   font-family: 'Kurale', serif;
+}
+
+@media(max-width: 599px) {
+   .topmenu>li>a {
+      padding: 15px 20px;
+   }
+   .submenu li a {
+      padding: 10px 20px;
+      margin: 0 20px;
+   }
+}
+
+@media(min-width: 600px) {
+   .topmenu {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+   }
+   .topmenu>li {
+      position: relative;
+   }
+   .topmenu>li:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      width: 1px;
+      height: 12px;
+      background: #d2d2d2;
+      top: 24px;
+      box-shadow: 4px -2px 0 #d2d2d2;
+      transform: rotate(30deg);
+   }
+   .topmenu>li:last-child:after {
+      background: none;
+      box-shadow: none;
+   }
+   .submenu {
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      width: 210px;
+      margin-left: -105px;
+      background: #fafafa;
+      border: 1px solid #ededed;
+      z-index: 5;
+      visibility: hidden;
+      opacity: 0;
+      transform: scale(.8);
+      transition: .4s ease-in-out;
+   }
+   .topmenu>li:hover .submenu {
+      visibility: visible;
+      opacity: 1;
+      transform: scale(1);
+   }
+   .submenu li a {
+      text-align: center;
+      padding: 10px 0;
+      margin: 0 10px;
+   }
+}
